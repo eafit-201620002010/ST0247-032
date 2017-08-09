@@ -14,19 +14,19 @@ grafo_lista.add_arc(3,10)
 
 
 
-def dfs_aux(grafo, vertice, final, recorrido, resultado):
+def dfs_aux(grafo, vertice, recorrido, resultado):
     recorrido+=[vertice]
-    if vertice == final:
+    if len(grafo.get_successors(vertice))==0:
         resultado.append(recorrido)
     else:
         for i in grafo.get_successors(vertice):
              if i not in recorrido:
-                dfs_aux(grafo,i,final,recorrido[:],resultado)
+                dfs_aux(grafo,i,recorrido[:],resultado)
 
 
 
 
-def dfs(grafo, vertice, final):
+def dfs(grafo, vertice):
     resultado = []
-    dfs_aux(grafo,vertice,final,[],resultado)
+    dfs_aux(grafo,vertice,[],resultado)
     return resultado
