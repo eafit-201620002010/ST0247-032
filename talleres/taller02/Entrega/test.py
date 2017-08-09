@@ -1,7 +1,7 @@
 import DigraphAM
 import DigraphAL
 
-
+#prueba1
 #Crea grafo en matriz
 grafo_matriz = DigraphAM.digraphAM(11)
 grafo_matriz.add_arc(5,11)
