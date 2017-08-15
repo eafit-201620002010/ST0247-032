@@ -23,7 +23,7 @@ class digraphAM:
     	#Creo una lista
         successors=[]
         #Recoro todos los vertices de la fila cero
-        for i in range(self.size):
+        for i in range(self.size+1):
         	#Si el vertice especificado tiene un peso diferente de 0 con el vertice de la fila significa que hay un arco entre dichos
             if self.matriz[vertex,i] != 0:
             	#Agrego el vertice con el que se encontro el arco a la lista
