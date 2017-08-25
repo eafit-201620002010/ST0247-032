@@ -9,14 +9,9 @@ def punto1(start, nums, target):
 
 
 # 2
-def punto2(s):
-    return punto2_aux("",s)
-
-def punto2_aux(base, s):
-    if len(s) == 0:
-        print(base)
-    else:
-        for i in range(len(s)):
-            punto2_aux(base+s[i], s[:i]+s[i+1:])
-
+def punto2(pre, pos, resultado):
+	resultado.add(pre)
+	if len(pos)==0 :
+		return resultado
+	return punto2(pre+pos[:1],pos[1:],resultado) and punto2(pre,pos[1:],resultado)
 
