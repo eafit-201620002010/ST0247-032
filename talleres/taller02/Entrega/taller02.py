@@ -39,17 +39,13 @@ def queens_aux(pre, pos, resultado):
 	return resultado
 
 def queens(n):
-	pos=""
-	#pos=[format(i) for i in range(n)]
-	for i in range(n):
-		pos=pos+str(i)
+	pos=[str(i) for i in range(n)]
 	permutaciones=queens_aux("",pos,[])
-	
 	contador=0
 	for i in range(len(permutaciones)):
 		opcion=list(permutaciones[i])
 		if es_valido(opcion):
-			contador=contador+1
+			contador+=1
 	return contador
 
 
