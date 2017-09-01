@@ -1,4 +1,6 @@
+import grafo
 
+#punto 1
 def puedo_poner_reina(r,tablero):
 	for i in range(r):
 		if abs(tablero[i]-tablero[r])==r-i or tablero[i]==tablero[r]:
@@ -21,3 +23,34 @@ def n_reinas_aux(r,n,tablero):
 			if puedo_poner_reina(n,tablero):
 				n_reinas_aux(r,n+1,tablero)
 	return r
+
+#punto 2
+
+grafo = grafo.digraphAL(11)
+grafo.add_arc(5,11)
+grafo.add_arc(11,2)
+grafo.add_arc(11,9)
+grafo.add_arc(11,10)
+grafo.add_arc(7,11)
+grafo.add_arc(7,8)
+grafo.add_arc(8,9)
+grafo.add_arc(3,8)
+grafo.add_arc(3,10)
+
+
+def camino(grafo,inicio,fin):
+	visitados=[False]*grafo.size
+	return dfs(grafo,inicio,fin,visitados)
+
+
+def dfs(grafo,nodo,objetivo,visitados):
+	visitados[nodo-1]=True
+	if nodo==objetivo:
+		return True
+	else:
+		sucesores=grafo.get_successors(nodo)
+		for i in sucesores:
+			if not visitados[i-1]:
+				if dfs(grafo,i,objetivo,visitados):
+					return True
+	return False
