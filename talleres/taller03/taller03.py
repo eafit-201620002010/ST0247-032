@@ -39,18 +39,18 @@ grafo.add_arc(3,10)
 
 
 def camino(grafo,inicio,fin):
-	visitados=[False]*grafo.size
+	visitados=[False]*len(grafo.lista)
 	return dfs(grafo,inicio,fin,visitados)
 
 
 def dfs(grafo,nodo,objetivo,visitados):
-	visitados[nodo-1]=True
+	visitados[nodo]=True
 	if nodo==objetivo:
 		return True
 	else:
 		sucesores=grafo.get_successors(nodo)
 		for i in sucesores:
-			if not visitados[i-1]:
+			if not visitados[i]:
 				if dfs(grafo,i,objetivo,visitados):
 					return True
 	return False
