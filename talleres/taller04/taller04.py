@@ -25,5 +25,24 @@ def permutaciones(pre, pos, resultado):
 		permutaciones(pre+pos[i],pos[:i]+pos[i+1:],resultado)
 	return resultado
 
-def remove_at(grafo,permutaciones):
+def FunnyGame_aux(grafo,nodo,visitados,suma,minimo):
+	print ("Estoy en: ",nodo," y sumo ",suma)
+	if suma>minimo:
+		print("la cague: ",nodo)
+		return -1
+	vuelos=grafo.get_successors(nodo)
+	for i in vuelos:
+		if visitados[i]==False:
+			print("sucesores: ",vuelos)
+			print("quiero ir a :",i,visitados[i])
+			visitados[i]=True
+			suma+=grafo.get_weight(nodo,i)
+			if FunnyGame_aux(grafo,i,visitados,suma,minimo)==-1:
+				visitados[i]=False
+				suma-=grafo.get_weight(nodo,i)
+
+	return suma
+
+
+#def remove_at(grafo,permutaciones):
 		
