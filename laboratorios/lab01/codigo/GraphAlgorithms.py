@@ -44,8 +44,7 @@ def punto1_2(grafo):
     #retorno el maximo
     return maximo
 
-#Adaptado de: https://gist.github.com/econchick/4666413
-#Metodos implementados se refieren a los metodos echos por mi
+
 def dijsktra(graph, initial):
   visited = {initial: 0}
   path = {}
