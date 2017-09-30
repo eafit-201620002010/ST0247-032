@@ -8,7 +8,13 @@ import DigraphAM
 """
 
 
-#Algoritmo compartido por el profesor
+"""
+Title: given graph is Bipartite or not
+Author: Divyanshu Mehta
+Date:/
+Code version:/
+Avaibility: http://www.geeksforgeeks.org/bipartite-graph/
+"""
 def bipartito(grafo, vertice):
 	color=[-1]*len(grafo)
 	color[vertice]=1

@@ -45,6 +45,13 @@ def punto1_2(grafo):
     return maximo
 
 
+"""
+Title: Dijkstra's Algorithm
+Author: econchick
+Date: 
+Code Version: 
+Avaibility: https://gist.github.com/econchick/4666413
+"""
 def dijsktra(graph, initial):
   visited = {initial: 0}
   path = {}
@@ -84,7 +91,13 @@ def dijsktra(graph, initial):
   return visited, path
 
 
-#Adaptado de: http://eddmann.com/posts/depth-first-search-and-breadth-first-search-in-python/
+"""
+Title: Depth-First Search 
+Author: Edd Mann
+Date: 05 Mar 2014
+Code Version: 
+Avaibility: http://eddmann.com/posts/depth-first-search-and-breadth-first-search-in-python/
+"""
 #Metodos implementados se refieren a los metodos echos por mi
 def dfs(graph, start):
     visited, stack = set(), [start]
@@ -102,7 +115,14 @@ def dfs(graph, start):
             stack.extend(grafo[vertex] - visited)
     return visited
 
-#Adaptado de: http://eddmann.com/posts/depth-first-search-and-breadth-first-search-in-python/
+
+"""
+Title: Breadth-First Search
+Author: Edd Mann
+Date: 05 Mar 2014
+Code Version: 
+Avaibility: http://eddmann.com/posts/depth-first-search-and-breadth-first-search-in-python/
+"""
 #Metodos implementados se refieren a los metodos echos por mi
 def bfs(graph, start):
     visited, queue = set(), [start]
