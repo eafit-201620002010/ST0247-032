@@ -11,6 +11,11 @@ class entrega2_crearGrafo:
         self.grafo={}
 
 
+"""
+    Aqui implemente el grafo con:
+    Un diccionario el cual por cada id de vertice guarda una lista de tuplas con id de vertices y peso de arcos con estos
+"""
+
     def crear_grafo(self):
 
     	#CREAMOS LOS VERTICES
