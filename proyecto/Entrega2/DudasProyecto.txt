@@ -8,3 +8,5 @@ todos estos atributos?
 
 --En los ejemplos dados de arcos se dan dos IDs y un peso, eso quiere decir que es desde el primero al segundo
 o son doble ruta?
+
+--Crear diccionarios para las diferentes busquedas
