@@ -2,12 +2,12 @@ import nodo
 
 class entrega2_opcion2:
 
+    """
+    Aqui implemente el grafo con:
+    un diccionario el cual por cada id de vertice guarda un nodo que contiene coordenadas, nombre y una lista
+    dentro de la lista de cada nodo se guarda una tupla con el id del vertice y el peso hacia este
+    """
 
-"""
-	Aqui implemente el grafo con:
-	un diccionario el cual por cada id de vertice guarda un nodo que contiene coordenadas, nombre y una lista
-	dentro de la lista de cada nodo se guarda una tupla con el id del vertice y el peso hacia este
-"""
     def __init__(self):
         #Creo un diccionario
         self.grafo={}
@@ -37,3 +37,4 @@ class entrega2_opcion2:
                 a=line.split(" ")
                 #Añado en el vertice asignado una tupla que contiene el vertice adyacente y peso del arco
                 self.grafo[a[0]].lista.append((a[1],a[2]))
+
