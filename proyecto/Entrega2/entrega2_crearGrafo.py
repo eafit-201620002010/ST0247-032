@@ -9,13 +9,14 @@ from collections import defaultdict
 class entrega2_crearGrafo:
 
     def __init__(self):
-    	self.grafo=defaultdict(list)
+    	self.grafo=defaultdict(dict)
 
     def crear_grafo(self):
          with open("arcos.txt") as f:
             for line in f:
                 a=line.split(" ")
-                self.grafo[a[0]].append((a[1],a[2]))
+                #opcion: int(round(float(a[2])))
+                self.grafo[a[0]][a[1]] = float(a[2])
 
 
 

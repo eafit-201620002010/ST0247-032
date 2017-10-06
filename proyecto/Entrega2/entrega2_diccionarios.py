@@ -10,6 +10,7 @@ class entrega2_diccionarios:
         #Creo dos diccionario
         self.diccionario_coor={}
         self.diccionario_name={}
+        self.diccionario_rh={}
 
 
 
@@ -25,6 +26,13 @@ class entrega2_diccionarios:
             for line in f:
                 a=line.split(" ")
                 self.diccionario_name[a[3][:-1]]=a[0]
+
+    def crear_dic_rh(self):
+         with open("vertices.txt") as f:
+            for line in f:
+                a=line.split(" ")
+                self.diccionario_rh[a[0]]=[(a[1],a[2])]
+
 
 
 

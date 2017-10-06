@@ -1,47 +1,54 @@
 from collections import defaultdict
-  
 
-class Prueba():
+"""
+Title: IMPLEMENTING DJIKSTRA'S SHORTEST PATH ALGORITHM WITH PYTHON
+Author: Ben Keen
+Date: 11th January 2017
+Code Version: 
+Avaibility: http://benalexkeen.com/implementing-djikstras-shortest-path-algorithm-with-python/
+"""
+
+
+class Graph():
     def __init__(self):
-        self.grafo=defaultdict(dict)
-        self.diccionario_coor={}
-        self.diccionario_name={}
-        self.diccionario_rh={}
-        self.recorrido=[]
+        """
+        self.edges is a dict of all possible next nodes
+        e.g. {'X': ['A', 'B', 'C', 'E'], ...}
+        self.weights has all the weights between two nodes,
+        with the two nodes as a tuple as the key
+        e.g. {('X', 'A'): 7, ('X', 'B'): 2, ...}
+        """
+        self.edges = defaultdict(list)
+        self.weights = {}
+        #AQUI
+        self.grafo = defaultdict(dict)
     
-    def crear(self):
-        with open("arcos2.txt") as f:
-            for line in f:
-                a=line.split(" ")
-                #opcion: int(round(float(a[2])))
-                self.grafo[a[0]][a[1]] = float(a[2])
+    def add_edge(self, from_node, to_node, weight):
+        # Note: assumes edges are bi-directional
+        self.edges[from_node].append(to_node)
+        self.weights[(from_node, to_node)] = weight
+        #AQUI
+        self.grafo[from_node][to_node] = weight
 
-    def crear_dic_coor(self):
-         with open("vertices2.txt") as f:
-            for line in f:
-                a=line.split(" ")
-                self.diccionario_coor[(a[1],a[2])]=a[0]
+graph = Graph()
 
+edges = [
+    ('X', 'A', 7),
+    ('X', 'B', 2),
+    ('X', 'C', 3),
+    ('X', 'E', 4),
+    ('A', 'D', 3),
+    ('B', 'A', 4),
+    ('B', 'D', 4),
+    ('B', 'H', 5),
+    ('D', 'F', 1),
+    ('F', 'H', 3),
+    ('H', 'G', 2),
+    ('G', 'Y', 2),
+]
 
-    def crear_dic_name(self):
-         with open("vertices2.txt") as f:
-            for line in f:
-                a=line.split(" ")
-                self.diccionario_name[a[3][:-1]]=a[0]
-
-    def crear_dic_rh(self):
-         with open("vertices2.txt") as f:
-            for line in f:
-                a=line.split(" ")
-                self.diccionario_rh[a[0]]=[(a[1],a[2])]
-
-
-
-graph = Prueba()
-graph.crear()
-graph.crear_dic_rh()
-
-
+for edge in edges:
+    graph.add_edge(*edge)
 
 def dijsktra(graph, initial, end):
     # shortest paths is a dict of nodes
@@ -82,4 +89,4 @@ def dijsktra(graph, initial, end):
     path = path[::-1]
     return path
 
-#print(dijsktra(graph, 'X', 'Y'))
+print(dijsktra(graph, 'X', 'Y'))
