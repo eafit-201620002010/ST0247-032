@@ -51,7 +51,7 @@ def dijsktra(graph, initial, end):
         current_node = next_node
     # Reverse path
     path = path[::-1]
-    return path
+    return path,weight
 
 coordenadas=[(5.1421214,2.143334395),(0.1421215,2.145434395)]
 inicial=(2.1421213,0.143434395)
@@ -60,18 +60,33 @@ def calcular_minimo(inicial,coordenadas):
     #a=[p for i in range(num)]
     minimo = math.hypot(coordenadas[0][0] - inicial[0], coordenadas[0][1] - inicial[1])
     mini=coordenadas[0]
-    for i in coordenadas:
-    	temp = math.hypot(i[0] - inicial[0], i[1] - inicial[1])
+    for i in range(len(coordenadas)):
+    	temp = math.hypot(coordenadas[i][0] - inicial[0], coordenadas[i][1] - inicial[1])
     	if min(minimo, temp) == temp:
     		minimo = temp
     		mini = i
     return mini
 
 def prueba(inicial,coordenadas):
+	temp=diccionarios.diccionario_coor[str(inicial[0]),str(inicial[1])]
+	weight=0
+	recorrido=[]
+	while coordenadas:
+		inicial_id=diccionarios.diccionario_coor[str(inicial[0]),str(inicial[1])]
+		proximo=coordenadas.pop(calcular_minimo(inicial,coordenadas))
+		proximo_id=diccionarios.diccionario_coor[str(proximo[0]),str(proximo[1])]
+		#print (dijsktra(grafo,inicial_id,proximo_id))
+		diji=dijsktra(grafo,inicial_id,proximo_id)
+		weight+=diji[1]
+		recorrido+=diji[0]
+		print(recorrido,weight)
+		inicial=proximo
 	inicial_id=diccionarios.diccionario_coor[str(inicial[0]),str(inicial[1])]
-	proximo=calcular_minimo(inicial,coordenadas)
-	proximo_id=diccionarios.diccionario_coor[str(proximo[0]),str(proximo[1])]
-	print (dijsktra(grafo,inicial_id,proximo_id))
+	diji=dijsktra(grafo,inicial_id,temp)
+	weight+=diji[1]
+	recorrido+=diji[0]
+	print(recorrido,weight)
 
-  
+
+print(dijsktra(grafo, '10000','4'))
 

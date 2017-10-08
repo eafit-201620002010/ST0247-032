@@ -88,5 +88,9 @@ def dijsktra(graph, initial, end):
         current_node = next_node
     # Reverse path
     path = path[::-1]
-    return path
+    #print("weight3 ",weight)
+    return path,weight
 
+
+print(dijsktra(graph, 'X','Y'))
+print(dijsktra(graph, 'A','G'))
