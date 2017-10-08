@@ -20,5 +20,5 @@ class entrega2_crearGrafo:
 
 
 
-grafo=entrega2_crearGrafo()
-grafo.crear_grafo()
+#grafo=entrega2_crearGrafo()
+#grafo.crear_grafo()

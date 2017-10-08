@@ -1,47 +1,18 @@
-from collections import defaultdict
-  
+import prototypeAlgo
+import entrega2_crearGrafo
+import entrega2_diccionarios
+import math
 
-class Prueba():
-    def __init__(self):
-        self.grafo=defaultdict(dict)
-        self.diccionario_coor={}
-        self.diccionario_name={}
-        self.diccionario_rh={}
-        self.recorrido=[]
-    
-    def crear(self):
-        with open("arcos2.txt") as f:
-            for line in f:
-                a=line.split(" ")
-                #opcion: int(round(float(a[2])))
-                self.grafo[a[0]][a[1]] = float(a[2])
+#hypot(x,y)
+#sqrt(x*x + y*y)
 
-    def crear_dic_coor(self):
-         with open("vertices2.txt") as f:
-            for line in f:
-                a=line.split(" ")
-                self.diccionario_coor[(a[1],a[2])]=a[0]
+grafo=entrega2_crearGrafo.entrega2_crearGrafo()
+grafo.crear_grafo()
 
+diccionarios=entrega2_diccionarios.entrega2_diccionarios()
+diccionarios.crear_dic_coor()
 
-    def crear_dic_name(self):
-         with open("vertices2.txt") as f:
-            for line in f:
-                a=line.split(" ")
-                self.diccionario_name[a[3][:-1]]=a[0]
-
-    def crear_dic_rh(self):
-         with open("vertices2.txt") as f:
-            for line in f:
-                a=line.split(" ")
-                self.diccionario_rh[a[0]]=[(a[1],a[2])]
-
-
-
-graph = Prueba()
-graph.crear()
-graph.crear_dic_rh()
-
-
+algoritmo=prototypeAlgo.Graph()
 
 def dijsktra(graph, initial, end):
     # shortest paths is a dict of nodes
@@ -82,4 +53,25 @@ def dijsktra(graph, initial, end):
     path = path[::-1]
     return path
 
-#print(dijsktra(graph, 'X', 'Y'))
+coordenadas=[(5.1421214,2.143334395),(0.1421215,2.145434395)]
+inicial=(2.1421213,0.143434395)
+
+def calcular_minimo(inicial,coordenadas):
+    #a=[p for i in range(num)]
+    minimo = math.hypot(coordenadas[0][0] - inicial[0], coordenadas[0][1] - inicial[1])
+    mini=coordenadas[0]
+    for i in coordenadas:
+    	temp = math.hypot(i[0] - inicial[0], i[1] - inicial[1])
+    	if min(minimo, temp) == temp:
+    		minimo = temp
+    		mini = i
+    return mini
+
+def prueba(inicial,coordenadas):
+	inicial_id=diccionarios.diccionario_coor[str(inicial[0]),str(inicial[1])]
+	proximo=calcular_minimo(inicial,coordenadas)
+	proximo_id=diccionarios.diccionario_coor[str(proximo[0]),str(proximo[1])]
+	print (dijsktra(grafo,inicial_id,proximo_id))
+
+  
+
