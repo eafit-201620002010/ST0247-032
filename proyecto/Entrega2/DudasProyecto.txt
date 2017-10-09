@@ -4,3 +4,5 @@
 --En los ejemplos dados de arcos se dan dos IDs y un peso, eso quiere decir que es desde el primero al segundo
 o son doble ruta?
 
+--Si la coordenada no se encuentra aproximarla auna cercana
+--Implementar nombres
