@@ -32,7 +32,7 @@ class Graph():
         self.grafo[from_node][to_node] = weight
 
 graph = Graph()
-
+"""
 edges = [
     ('X', 'A', 7),
     ('X', 'B', 2),
@@ -46,6 +46,37 @@ edges = [
     ('F', 'H', 3),
     ('H', 'G', 2),
     ('G', 'Y', 2),
+]
+"""
+edges = [
+    ('10000', '1', 10),
+    ('10000', '3', 14),
+    ('10000', '4', 10),
+    ('1', '10000', 10),
+    ('1', '2', 7),
+    ('1', '3', 12),
+    ('1', '4', 15),
+    ('2', '1', 7),
+    ('2', '3', 20),
+    ('3', '10000', 14),
+    ('3', '1', 12),
+    ('3', '2', 20),
+    ('3', '4', 8),
+    ('4', '10000', 10),
+    ('4', '1', 15),
+    ('4', '3', 8),
+    ('X', 'A', 7),
+    ('X', 'B', 2),
+    ('X', 'C', 3),
+    ('X', 'E', 4),
+    ('A', 'D', 3),
+    ('B', 'A', 4),
+    ('B', 'D', 4),
+    ('B', 'H', 5),
+    ('D', 'F', 1),
+    ('F', 'H', 3),
+    ('H', 'G', 2),
+    ('G', 'Y', 2)
 ]
 
 for edge in edges:
@@ -92,5 +123,6 @@ def dijsktra(graph, initial, end):
     return path,weight
 
 
-print(dijsktra(graph, 'X','Y'))
-print(dijsktra(graph, 'A','G'))
+#print(dijsktra(graph, 'X','Y'))
+#print(dijsktra(graph, 'X','B'))
+#print(dijsktra(graph, '1','4'))

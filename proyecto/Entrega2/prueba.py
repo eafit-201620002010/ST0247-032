@@ -75,7 +75,6 @@ def prueba(inicial,coordenadas):
 		inicial_id=diccionarios.diccionario_coor[str(inicial[0]),str(inicial[1])]
 		proximo=coordenadas.pop(calcular_minimo(inicial,coordenadas))
 		proximo_id=diccionarios.diccionario_coor[str(proximo[0]),str(proximo[1])]
-		#print (dijsktra(grafo,inicial_id,proximo_id))
 		diji=dijsktra(grafo,inicial_id,proximo_id)
 		weight+=diji[1]
 		recorrido+=diji[0]
@@ -89,4 +88,5 @@ def prueba(inicial,coordenadas):
 
 
 print(dijsktra(grafo, '10000','4'))
+print (prueba(inicial,coordenadas))
 
