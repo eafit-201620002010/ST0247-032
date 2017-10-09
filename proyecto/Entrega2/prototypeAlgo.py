@@ -9,7 +9,7 @@ Code Version:
 Avaibility: http://benalexkeen.com/implementing-djikstras-shortest-path-algorithm-with-python/
 """
 
-
+#MODIFICACIONES MIAS BAJO ETIQUETA 'AQUI'
 class Graph():
     def __init__(self):
         """
@@ -21,33 +21,20 @@ class Graph():
         """
         self.edges = defaultdict(list)
         self.weights = {}
-        #AQUI
+        #'AQUI' Creacion de diccionario de diccionarios para recrear los grafos de mi proyecto con el algoritmo de Ben
         self.grafo = defaultdict(dict)
     
     def add_edge(self, from_node, to_node, weight):
         # Note: assumes edges are bi-directional
+        #'AQUI' ya no son bi-direccionales
         self.edges[from_node].append(to_node)
         self.weights[(from_node, to_node)] = weight
-        #AQUI
+        #'AQUI' asigno con dos llaves un peso
         self.grafo[from_node][to_node] = weight
 
 graph = Graph()
-"""
-edges = [
-    ('X', 'A', 7),
-    ('X', 'B', 2),
-    ('X', 'C', 3),
-    ('X', 'E', 4),
-    ('A', 'D', 3),
-    ('B', 'A', 4),
-    ('B', 'D', 4),
-    ('B', 'H', 5),
-    ('D', 'F', 1),
-    ('F', 'H', 3),
-    ('H', 'G', 2),
-    ('G', 'Y', 2),
-]
-"""
+
+#'AQUI' Implemento manualmente el grafo de ejemplo del profesor junto con el grafo de ejemplo de Ben
 edges = [
     ('10000', '1', 10),
     ('10000', '3', 14),
@@ -82,47 +69,43 @@ edges = [
 for edge in edges:
     graph.add_edge(*edge)
 
-def dijsktra(graph, initial, end):
-    # shortest paths is a dict of nodes
-    # whose value is a tuple of (previous node, weight)
-    shortest_paths = {initial: (None, 0)}
-    current_node = initial
-    visited = set()
+    def dijsktra(graph, initial, end):
+        # shortest paths is a dict of nodes
+        # whose value is a tuple of (previous node, weight)
+        shortest_paths = {initial: (None, 0)}
+        current_node = initial
+        visited = set()
+        while current_node != end:
+            visited.add(current_node)
+            #AQUI Modificacion para almacenar los nodos adyacentes a un nodo en especifico con mi grafo
+            #Original: destinations = graph.edges[current_node]
+            destinations = list(graph.grafo[current_node].keys())
+            weight_to_current_node = shortest_paths[current_node][1]
 
-    while current_node != end:
-        visited.add(current_node)
-        #AQUI
-        destinations = list(graph.grafo[current_node].keys())
-        weight_to_current_node = shortest_paths[current_node][1]
-
-        for next_node in destinations:
-            #AQUI
-            weight = graph.grafo[current_node][next_node] + weight_to_current_node
-            if next_node not in shortest_paths:
-                shortest_paths[next_node] = (current_node, weight)
-            else:
-                current_shortest_weight = shortest_paths[next_node][1]
-                if current_shortest_weight > weight:
+            for next_node in destinations:
+                #AQUI Modificacio para obtener el peso entre dos nodos con mi grafo
+                #Original: graph.weights[(current_node, next_node)] + weight_to_current_node
+                weight = graph.grafo[current_node][next_node] + weight_to_current_node
+                if next_node not in shortest_paths:
                     shortest_paths[next_node] = (current_node, weight)
+                else:
+                    current_shortest_weight = shortest_paths[next_node][1]
+                    if current_shortest_weight > weight:
+                        shortest_paths[next_node] = (current_node, weight)
+            
+            next_destinations = {node: shortest_paths[node] for node in shortest_paths if node not in visited}
+            if not next_destinations:
+                return "Route Not Possible"
+            # next node is the destination with the lowest weight
+            current_node = min(next_destinations, key=lambda k: next_destinations[k][1])
         
-        next_destinations = {node: shortest_paths[node] for node in shortest_paths if node not in visited}
-        if not next_destinations:
-            return "Route Not Possible"
-        # next node is the destination with the lowest weight
-        current_node = min(next_destinations, key=lambda k: next_destinations[k][1])
-    
-    # Work back through destinations in shortest path
-    path = []
-    while current_node is not None:
-        path.append(current_node)
-        next_node = shortest_paths[current_node][0]
-        current_node = next_node
-    # Reverse path
-    path = path[::-1]
-    #print("weight3 ",weight)
-    return path,weight
+        # Work back through destinations in shortest path
+        path = []
+        while current_node is not None:
+            path.append(current_node)
+            next_node = shortest_paths[current_node][0]
+            current_node = next_node
+        # Reverse path
+        path = path[::-1]
+        return path
 
-
-#print(dijsktra(graph, 'X','Y'))
-#print(dijsktra(graph, 'X','B'))
-#print(dijsktra(graph, '1','4'))

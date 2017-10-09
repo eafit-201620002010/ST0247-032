@@ -1,3 +1,9 @@
+"""
+@clase entrega2_opcion2
+Descripcion: Construccion del grafo con una implementacion de nodos
+@author Mateo Ramirez H. / Juan Camilo Echeverri S.
+@version 1
+"""
 import nodo
 
 class entrega2_opcion2:
