@@ -66,6 +66,10 @@ def dijsktra(graph, initial):
     for k in range(len(successors)):
         edges[i].append(successors[k])
 
+  print("nodos ",nodes)
+  print("edges ",edges)
+
+
   while nodes: 
     min_node = None
     for node in nodes:
