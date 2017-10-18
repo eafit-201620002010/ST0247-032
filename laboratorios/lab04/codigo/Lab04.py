@@ -16,8 +16,8 @@ Code Version:
 Avaibility: http://interactiva.eafit.edu.co/ei/contenido
 """
 def punto1(grafo,inicial):
-    visitados = [False]*grafo.size
-    respuesta = [0]*(grafo.size+1)
+    visitados = [False]*(grafo.size+1)
+    respuesta = [0]*(grafo.size+2)
     indice = 0
     actual = inicial
     cercano = -1
