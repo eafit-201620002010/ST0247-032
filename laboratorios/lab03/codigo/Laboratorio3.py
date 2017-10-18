@@ -4,46 +4,11 @@
     @author Mateo Ramirez H. / Juan Camilo Echeverri S.
     @version 1
 """
-import DigraphAL, DigraphAM
 import queue, math
-
-#Generamos un grafo de matriz y lo llenamos
-gmatriz = DigraphAM.digraphAM(11)
-gmatriz.add_arc(5,11)
-gmatriz.add_arc(11,2)
-gmatriz.add_arc(11,9)
-gmatriz.add_arc(11,10)
-gmatriz.add_arc(7,11)
-gmatriz.add_arc(7,8)
-gmatriz.add_arc(8,9)
-gmatriz.add_arc(3,8)
-gmatriz.add_arc(3,10)
-
-#Generamos un grafo de lista y lo llenamos
-glista = DigraphAL.digraphAL(11)
-glista.add_arc(5,11)
-glista.add_arc(11,2)
-glista.add_arc(11,9)
-glista.add_arc(11,10)
-glista.add_arc(7,11)
-glista.add_arc(7,8)
-glista.add_arc(8,9)
-glista.add_arc(3,8)
-glista.add_arc(3,10)
-
 
 def n_reinas(n):
     tablero = [None]*n
     return n_reinas_aux([],0,tablero)
-
-def prueba(n):
-    tablero = [None]*n
-    k=0
-    for i in range(n):
-        if puedo_poner_reina(i,tablero):
-            tablero[k]=i
-            k+=1
-    return tablero
 
 
 
