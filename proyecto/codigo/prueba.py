@@ -10,7 +10,8 @@ diccionarios=diccionarios.diccionarios()
 diccionarios.crear_dic_coor()
 diccionarios.crear_dic_id()
 
-
+coordenadas=[(5.1421214,2.143334395),(0.1421215,2.145434395)]
+inicial=(2.1421213,0.143434395)
 
 
 
@@ -44,7 +45,7 @@ def dijsktra(graph, initial, end):
         
         next_destinations = {node: shortest_paths[node] for node in shortest_paths if node not in visited}
         if not next_destinations:
-            return "Route Not Possible"
+            return [math.inf]
         current_node = min(next_destinations, key=lambda k: next_destinations[k][1])
     
     path = []
@@ -65,6 +66,7 @@ def dijsktra(graph, initial, end):
     *Parametro coordenadas: Lista de coordenadas.
     *Return: retorna un int que es la posicion de la coordenada mas cercana.
 """
+#OPCIONAL
 def calcular_minimo(inicial,coordenadas):
     minimo = math.hypot(coordenadas[0][0] - inicial[0], coordenadas[0][1] - inicial[1])
     mini=coordenadas[0]
@@ -77,7 +79,7 @@ def calcular_minimo(inicial,coordenadas):
             mini = i
 
     return mini
-
+#OPCIONAL
 
 
 """
@@ -88,7 +90,6 @@ def calcular_minimo(inicial,coordenadas):
     *Parametro coordenadas: Lista de coordenadas.
     *Return: retorna un la coordenada mas cercana o mas similar a la coordenada inicial.
 """
-#PENDIENTE
 def calcular_cercano(inicial,coordenadas):
     minimo = math.inf
     resultado=None
@@ -101,7 +102,6 @@ def calcular_cercano(inicial,coordenadas):
             resultado = i
 
     return resultado
-#PENDIENTE
 
 
 
@@ -131,7 +131,7 @@ def distancia(recorrido):
     *Return: retorna una lista con el id de cada vertice visitado para poder recorrer el total de elementos
      de la lista coordenadas y volver a la coordenada inicial.
 """
-#PENDIENTE
+#OPCIONAL
 def recorrido(inicial,coordenadas):
     diccionario=diccionarios.diccionario_coor
     temp=diccionario[str(inicial[0]),str(inicial[1])]
@@ -153,7 +153,7 @@ def recorrido(inicial,coordenadas):
     recorrido+=diji
 
     return recorrido
-#PENDIENTE
+#OPCIONAL
 
 
 
@@ -178,21 +178,19 @@ def recorrido2(inicial,coordenadas):
         proximo_id=diccionario[proximo[0],proximo[1]]
 
         diji=dijsktra(grafo,inicial_id,proximo_id)
-        recorrido+=diji[:len(diji)-1]
+        if math.inf in diji:
+            return "Ruta imposible"
 
+        recorrido+=diji[:len(diji)-1]
         inicial=proximo
 
     inicial_id=diccionario[inicial[0],inicial[1]]
     diji=dijsktra(grafo,inicial_id,temp)
     recorrido+=diji
 
+
     return recorrido
 
-
-
-
-coordenadas=[(5.421214,2.43334395),(0.421215,2.45434395)]
-inicial=(2.421213,0.43434395)
 
 
 """
@@ -217,18 +215,23 @@ def prueba(inicial, coordenadas):
         if coordenadasStr[i] not in llaves:
             coordenadasStr[i]=calcular_cercano(coordenadas[i],llaves)
 
-    #PENDIENTE
+    #OPCIONAL
+    """
     inicial=float(inicialStr[0]),float(inicialStr[1])
     coordenadas=[(float(i[0]),float(i[1])) for i in coordenadasStr]
 
     test=recorrido(inicial,coordenadas)
     print("Recorrido ",test," Distancia ",distancia(test))
-    #PENDIENTE
+    """
+    #OPCIONAL
 
     test=recorrido2(inicialStr,coordenadasStr)
-    print("Recorrido2 ",test," Distancia ",distancia(test))
+    if test == "Ruta imposible":
+        print("Recorrido2: ",test)
+    else:
+        print("Recorrido2 ",test," Distancia ",distancia(test))
 
-    
+
 
 """
 coordenadas=[]

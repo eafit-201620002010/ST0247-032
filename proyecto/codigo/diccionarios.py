@@ -40,7 +40,7 @@ class diccionarios:
 
 
     def crear_dic_id(self):
-         with open("vertices.txt", encoding="utf8") as f:
+         with open("vertices2.txt", encoding="utf8") as f:
             for line in f:
                 a=line.split(" ")
 
