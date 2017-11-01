@@ -11,11 +11,12 @@ class diccionarios:
         #Creo dos diccionarios.
         self.diccionario_coor={}
         self.diccionario_name={}
+        self.diccionario_id={}
 
 
     def crear_dic_coor(self):
         #"with" abre el archivo y lo cierra al acabar.
-         with open("vertices2.txt", encoding="utf8") as f:
+         with open("vertices.txt", encoding="utf8") as f:
 
             #Leo linea por linea
             for line in f:
@@ -36,3 +37,12 @@ class diccionarios:
 
                 #Cada llave de mi diccionario es el nombre del vertice y almacena el id del vertice
                 self.diccionario_name[a[3][:-1]]=a[0]
+
+
+    def crear_dic_id(self):
+         with open("vertices.txt", encoding="utf8") as f:
+            for line in f:
+                a=line.split(" ")
+
+                #Cada llave de mi diccionario es el nombre del vertice y almacena el id del vertice
+                self.diccionario_id[a[0]]=(a[1],a[2])
