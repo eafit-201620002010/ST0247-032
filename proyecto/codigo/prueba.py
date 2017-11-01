@@ -60,30 +60,6 @@ def dijsktra(graph, initial, end):
 
 """
     Dado unas coordenada inicial y una lista de coordenas, retorna
-    el indice de la coordenada mas cercana.
-
-    *Parametro inicial: Coordenada inicial.
-    *Parametro coordenadas: Lista de coordenadas.
-    *Return: retorna un int que es la posicion de la coordenada mas cercana.
-"""
-#OPCIONAL
-def calcular_minimo(inicial,coordenadas):
-    minimo = math.hypot(coordenadas[0][0] - inicial[0], coordenadas[0][1] - inicial[1])
-    mini=coordenadas[0]
-
-    for i in range(len(coordenadas)):
-        temp = math.hypot(coordenadas[i][0] - inicial[0], coordenadas[i][1] - inicial[1])
-
-        if min(minimo, temp) == temp:
-            minimo = temp
-            mini = i
-
-    return mini
-#OPCIONAL
-
-
-"""
-    Dado unas coordenada inicial y una lista de coordenas, retorna
     la coordenada mas cercana.
 
     *Parametro inicial: Coordenada inicial.
@@ -118,42 +94,6 @@ def distancia(recorrido):
         distancia+=grafo.grafo[recorrido[i]][recorrido[i+1]]
 
     return distancia
-
-
-
-"""
-    Dado unas coordenadas iniciales y una lista de coordenas, retorna
-    una lista de id's de vertices visitados para recorrer todas las coordenadas
-    visitando siempre el vertice mas cercano.
-
-    *Parametro inicial: Coordenada inicial.
-    *Parametro coordenadas: Lista de coordenadas a visitar.
-    *Return: retorna una lista con el id de cada vertice visitado para poder recorrer el total de elementos
-     de la lista coordenadas y volver a la coordenada inicial.
-"""
-#OPCIONAL
-def recorrido(inicial,coordenadas):
-    diccionario=diccionarios.diccionario_coor
-    temp=diccionario[str(inicial[0]),str(inicial[1])]
-    recorrido=[]
-
-    while coordenadas:
-
-        inicial_id=diccionario[str(inicial[0]),str(inicial[1])]
-        proximo=coordenadas.pop(calcular_minimo(inicial,coordenadas))
-        proximo_id=diccionario[str(proximo[0]),str(proximo[1])]
-
-        diji=dijsktra(grafo,inicial_id,proximo_id)
-        recorrido+=diji[:len(diji)-1]
-
-        inicial=proximo
-
-    inicial_id=diccionario[str(inicial[0]),str(inicial[1])]
-    diji=dijsktra(grafo,inicial_id,temp)
-    recorrido+=diji
-
-    return recorrido
-#OPCIONAL
 
 
 
@@ -214,16 +154,6 @@ def prueba(inicial, coordenadas):
     for i in range(len(coordenadasStr)):
         if coordenadasStr[i] not in llaves:
             coordenadasStr[i]=calcular_cercano(coordenadas[i],llaves)
-
-    #OPCIONAL
-    """
-    inicial=float(inicialStr[0]),float(inicialStr[1])
-    coordenadas=[(float(i[0]),float(i[1])) for i in coordenadasStr]
-
-    test=recorrido(inicial,coordenadas)
-    print("Recorrido ",test," Distancia ",distancia(test))
-    """
-    #OPCIONAL
 
     test=recorrido2(inicialStr,coordenadasStr)
     if test == "Ruta imposible":
