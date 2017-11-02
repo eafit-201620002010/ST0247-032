@@ -17,7 +17,7 @@ class grafo:
     def crear_grafo(self):
 
     	#"with" abre el archivo y lo cierra al acabar.
-         with open("arcos.txt", encoding="utf8") as f:
+         with open("arcos2.txt", encoding="utf8") as f:
 
          	#Leo linea por linea
             for line in f:

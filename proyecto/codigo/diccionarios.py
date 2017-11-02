@@ -16,7 +16,7 @@ class diccionarios:
 
     def crear_dic_coor(self):
         #"with" abre el archivo y lo cierra al acabar.
-         with open("vertices.txt", encoding="utf8") as f:
+         with open("vertices2.txt", encoding="utf8") as f:
 
             #Leo linea por linea
             for line in f:

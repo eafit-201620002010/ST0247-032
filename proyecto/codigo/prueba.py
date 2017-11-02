@@ -1,7 +1,9 @@
 import grafo
 import diccionarios
 import math
-
+from time import time
+import os
+import psutil
 
 grafo=grafo.grafo()
 grafo.crear_grafo()
@@ -10,8 +12,9 @@ diccionarios=diccionarios.diccionarios()
 diccionarios.crear_dic_coor()
 diccionarios.crear_dic_id()
 
-coordenadas=[(5.1421214,2.143334395),(0.1421215,2.145434395)]
-inicial=(2.1421213,0.143434395)
+coordenadas=[(6.228493,-75.570888),(6.235463,-75.575514),(6.237513,-75.570420),(6.246328,-75.575205),(6.260740,-75.591001),(6.256578,-75.615109),
+(6.205157,-75.555572),(6.209039,-75.558876)]
+inicial=(6.237513,-75.570420)
 
 
 
@@ -143,7 +146,15 @@ def recorrido2(inicial,coordenadas):
     *Return: retorna una lista con el id de cada vertice visitado para poder recorrer el total de elementos
      de la lista coordenadas y volver a la coordenada inicial.
 """
+
+
+ 
+ 
+
+
 def prueba(inicial, coordenadas):
+    tiempo_inicial = time() 
+ 
     llaves=diccionarios.diccionario_coor.keys()
     inicialStr=str(inicial[0]),str(inicial[1])
     coordenadasStr=[(str(i[0]),str(i[1])) for i in coordenadas]
@@ -160,8 +171,11 @@ def prueba(inicial, coordenadas):
         print("Recorrido2: ",test)
     else:
         print("Recorrido2 ",test," Distancia ",distancia(test))
-
-
+    tiempo_final = time()
+    tiempo_ejecucion = tiempo_final - tiempo_inicial
+    print ('El tiempo de ejecucion fue:',tiempo_ejecucion, "seg")
+    process = psutil.Process(os.getpid())
+    print(process.memory_info().rss, "bytes")
 
 """
 coordenadas=[]
